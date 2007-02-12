@@ -1,5 +1,5 @@
 Summary:	Shapefile C Library
-Summary(pl.UTF-8):   Biblioteka Shapefile dla C
+Summary(pl.UTF-8):	Biblioteka Shapefile dla C
 Name:		shapelib
 Version:	1.2.10
 Release:	1
@@ -23,7 +23,7 @@ oraz związanych z nimi plików atrybutów (.dbf).
 
 %package devel
 Summary:	Header files for shapelib library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki shapelib
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki shapelib
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -35,7 +35,7 @@ Pliki nagłówkowe biblioteki shapelib.
 
 %package static
 Summary:	Static shapelib library
-Summary(pl.UTF-8):   Statyczna biblioteka shapelib
+Summary(pl.UTF-8):	Statyczna biblioteka shapelib
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
