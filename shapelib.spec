@@ -1,5 +1,5 @@
 Summary:	Shapefile C Library
-Summary(pl):	Biblioteka Shapefile dla C
+Summary(pl.UTF-8):   Biblioteka Shapefile dla C
 Name:		shapelib
 Version:	1.2.10
 Release:	1
@@ -16,33 +16,33 @@ The Shapefile C Library provides the ability to write simple C
 programs for reading, writing and updating (to a limited extent) ESRI
 Shapefiles, and the associated attribute file (.dbf).
 
-%description -l pl
-Biblioteka C Shapefile daje mo縧iwo舵 pisania prostych program體 w C
-do odczytu, zapisu i uaktualniania (w pewnym zakresie) plik體 ESRI
-oraz zwi眤anych z nimi plik體 atrybut體 (.dbf).
+%description -l pl.UTF-8
+Biblioteka C Shapefile daje mo偶liwo艣膰 pisania prostych program贸w w C
+do odczytu, zapisu i uaktualniania (w pewnym zakresie) plik贸w ESRI
+oraz zwi膮zanych z nimi plik贸w atrybut贸w (.dbf).
 
 %package devel
 Summary:	Header files for shapelib library
-Summary(pl):	Pliki nag丑wkowe biblioteki shapelib
+Summary(pl.UTF-8):   Pliki nag艂贸wkowe biblioteki shapelib
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for shapelib library.
 
-%description devel -l pl
-Pliki nag丑wkowe biblioteki shapelib.
+%description devel -l pl.UTF-8
+Pliki nag艂贸wkowe biblioteki shapelib.
 
 %package static
 Summary:	Static shapelib library
-Summary(pl):	Statyczna biblioteka shapelib
+Summary(pl.UTF-8):   Statyczna biblioteka shapelib
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static shapelib library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka shapelib.
 
 %prep
