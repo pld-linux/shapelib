@@ -1,3 +1,5 @@
+# TODO
+# - fix build CC containing spaces, like ccache cc
 Summary:	Shapefile C Library
 Summary(pl.UTF-8):	Biblioteka Shapefile dla C
 Name:		shapelib
@@ -10,6 +12,9 @@ Source0:	ftp://ftp.remotesensing.org/pub/shapelib/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
 URL:		http://www.remotesensing.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# broken
+%undefine	with_ccache
 
 %description
 The Shapefile C Library provides the ability to write simple C
@@ -57,14 +62,13 @@ Statyczna biblioteka shapelib.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} lib_install \
-	DESTDIR=$RPM_BUILD_ROOT \
 	libdir=%{_libdir} \
-	includedir=%{_includedir}
+	includedir=%{_includedir} \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_bindir}
-for p in dbfadd dbfcreate dbfdump shpadd shpcreate shpdump shprewind shptest ; do
+for p in dbfadd dbfcreate dbfdump shpadd shpcreate shpdump shprewind shptest; do
 	sh ./libtool --mode=install install $p $RPM_BUILD_ROOT%{_bindir}
 done
 
@@ -79,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog README* *.html
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/libshp.so.*.*.*
+%ghost %{_libdir}/libshp.so.1
 
 %files devel
 %defattr(644,root,root,755)
