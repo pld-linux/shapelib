@@ -7,7 +7,7 @@ Version:	1.2.10
 Release:	1
 License:	MIT or LGPL
 Group:		Libraries
-Source0:	ftp://ftp.remotesensing.org/pub/shapelib/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.remotesensing.org/shapelib/%{name}-%{version}.tar.gz
 # Source0-md5:	4d96bd926167193d27bf14d56e2d484e
 Patch0:		%{name}-make.patch
 URL:		http://www.remotesensing.org/
@@ -81,7 +81,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog README* *.html
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/dbf*
+%attr(755,root,root) %{_bindir}/shp*
 %attr(755,root,root) %{_libdir}/libshp.so.*.*.*
 %ghost %{_libdir}/libshp.so.1
 
