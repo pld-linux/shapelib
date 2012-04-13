@@ -3,12 +3,12 @@
 Summary:	Shapefile C Library
 Summary(pl.UTF-8):	Biblioteka Shapefile dla C
 Name:		shapelib
-Version:	1.2.10
+Version:	1.3.0
 Release:	1
 License:	MIT or LGPL
 Group:		Libraries
 Source0:	ftp://ftp.remotesensing.org/shapelib/%{name}-%{version}.tar.gz
-# Source0-md5:	4d96bd926167193d27bf14d56e2d484e
+# Source0-md5:	2ff7d0b21d4b7506b452524492795f77
 Patch0:		%{name}-make.patch
 URL:		http://www.remotesensing.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -62,14 +62,16 @@ Statyczna biblioteka shapelib.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_includedir}}
+
 %{__make} lib_install \
 	libdir=%{_libdir} \
-	includedir=%{_includedir} \
+	includedir=%{_includedir}/libshp \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_bindir}
 for p in dbfadd dbfcreate dbfdump shpadd shpcreate shpdump shprewind shptest; do
-	sh ./libtool --mode=install install $p $RPM_BUILD_ROOT%{_bindir}
+	libtool --mode=install install $p $RPM_BUILD_ROOT%{_bindir}
 done
 
 %clean
@@ -80,11 +82,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README* *.html
+%doc ChangeLog README* web/*.html
 %attr(755,root,root) %{_bindir}/dbf*
 %attr(755,root,root) %{_bindir}/shp*
 %attr(755,root,root) %{_libdir}/libshp.so.*.*.*
-%ghost %{_libdir}/libshp.so.1
+%attr(755,root,root) %ghost %{_libdir}/libshp.so.1
 
 %files devel
 %defattr(644,root,root,755)
