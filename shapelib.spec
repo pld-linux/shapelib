@@ -4,7 +4,7 @@ Summary:	Shapefile C Library
 Summary(pl.UTF-8):	Biblioteka Shapefile dla C
 Name:		shapelib
 Version:	1.3.0
-Release:	1
+Release:	2
 License:	MIT or LGPL
 Group:		Libraries
 Source0:	ftp://ftp.remotesensing.org/shapelib/%{name}-%{version}.tar.gz
