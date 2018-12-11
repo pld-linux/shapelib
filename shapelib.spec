@@ -1,20 +1,18 @@
-# TODO
-# - fix build CC containing spaces, like ccache cc
 Summary:	Shapefile C Library
 Summary(pl.UTF-8):	Biblioteka Shapefile dla C
 Name:		shapelib
-Version:	1.3.0
-Release:	2
+Version:	1.4.1
+Release:	1
 License:	MIT or LGPL
 Group:		Libraries
-Source0:	ftp://ftp.remotesensing.org/shapelib/%{name}-%{version}.tar.gz
-# Source0-md5:	2ff7d0b21d4b7506b452524492795f77
-Patch0:		%{name}-make.patch
-URL:		http://www.remotesensing.org/
+Source0:	http://download.osgeo.org/shapelib/%{name}-%{version}.tar.gz
+# Source0-md5:	ae9f1fcd2adda35b74ac4da8674a3178
+URL:		http://shapelib.maptools.org/
+BuildRequires:	autoconf >= 2.62
+BuildRequires:	automake
+BuildRequires:	libtool
+BuildRequires:	proj-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-# broken
-%undefine	with_ccache
 
 %description
 The Shapefile C Library provides the ability to write simple C
@@ -52,27 +50,20 @@ Statyczna biblioteka shapelib.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-%{__make} lib all \
-	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}" \
-	libdir=%{_libdir}
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_includedir}/libshp}
 
-%{__make} lib_install \
-	libdir=%{_libdir} \
-	includedir=%{_includedir}/libshp \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_bindir}
-for p in dbfadd dbfcreate dbfdump shpadd shpcreate shpdump shprewind shptest; do
-	libtool --mode=install install $p $RPM_BUILD_ROOT%{_bindir}
-done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -83,16 +74,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog README* web/*.html
+%attr(755,root,root) %{_bindir}/Shape_PointInPoly
 %attr(755,root,root) %{_bindir}/dbf*
 %attr(755,root,root) %{_bindir}/shp*
 %attr(755,root,root) %{_libdir}/libshp.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libshp.so.1
+%attr(755,root,root) %ghost %{_libdir}/libshp.so.2
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libshp.so
 %{_libdir}/libshp.la
-%{_includedir}/libshp
+%{_includedir}/shapefil.h
+%{_pkgconfigdir}/shapelib.pc
 
 %files static
 %defattr(644,root,root,755)
