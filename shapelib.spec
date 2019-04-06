@@ -1,17 +1,16 @@
 Summary:	Shapefile C Library
 Summary(pl.UTF-8):	Biblioteka Shapefile dla C
 Name:		shapelib
-Version:	1.4.1
+Version:	1.5.0
 Release:	1
 License:	MIT or LGPL
 Group:		Libraries
 Source0:	http://download.osgeo.org/shapelib/%{name}-%{version}.tar.gz
-# Source0-md5:	ae9f1fcd2adda35b74ac4da8674a3178
+# Source0-md5:	e397d4e7e734537ec36d0491d524b4ea
 URL:		http://shapelib.maptools.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake
 BuildRequires:	libtool
-BuildRequires:	proj-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
