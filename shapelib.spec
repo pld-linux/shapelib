@@ -9,8 +9,8 @@ Source0:	http://download.osgeo.org/shapelib/%{name}-%{version}.tar.gz
 # Source0-md5:	e397d4e7e734537ec36d0491d524b4ea
 URL:		http://shapelib.maptools.org/
 BuildRequires:	autoconf >= 2.62
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	automake >= 1:1.11
+BuildRequires:	libtool >= 2:2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,10 +52,11 @@ Statyczna biblioteka shapelib.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	--disable-silent-rules
 %{__make}
 
 %install
