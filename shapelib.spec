@@ -1,12 +1,12 @@
 Summary:	Shapefile C Library
 Summary(pl.UTF-8):	Biblioteka Shapefile dla C
 Name:		shapelib
-Version:	1.5.0
+Version:	1.6.0
 Release:	1
-License:	MIT or LGPL
+License:	MIT or LGPL v2+
 Group:		Libraries
 Source0:	http://download.osgeo.org/shapelib/%{name}-%{version}.tar.gz
-# Source0-md5:	e397d4e7e734537ec36d0491d524b4ea
+# Source0-md5:	2309323751e9d538e2ccb09c8d05339c
 URL:		http://shapelib.maptools.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libshp.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -75,15 +78,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog README* web/*.html
 %attr(755,root,root) %{_bindir}/Shape_PointInPoly
+%attr(755,root,root) %{_bindir}/csv2shp
 %attr(755,root,root) %{_bindir}/dbf*
 %attr(755,root,root) %{_bindir}/shp*
 %attr(755,root,root) %{_libdir}/libshp.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libshp.so.2
+%attr(755,root,root) %ghost %{_libdir}/libshp.so.4
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libshp.so
-%{_libdir}/libshp.la
 %{_includedir}/shapefil.h
 %{_pkgconfigdir}/shapelib.pc
 
